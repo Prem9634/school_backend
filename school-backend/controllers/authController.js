@@ -47,6 +47,12 @@ exports.login = asyncHandler(async (req, res) => {
     return res.status(403).json({ success: false, message: "School subscription is inactive. Contact admin." });
   }
 
+  console.log("Email:", email);
+  console.log("Password:", 
+  password);
+  console.log("Hash:",
+  user.password_hash);
+  
   const isMatch = await bcrypt.compare(password, user.password_hash);
   if (!isMatch) {
     return res.status(401).json({ success: false, message: "Invalid credentials" });
